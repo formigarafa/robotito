@@ -15,7 +15,7 @@ require 'xmpp4r-simple'
 require 'session'
 
 puts "Connecting"
-if messenger = Jabber::Simple.new(BOT_LOGIN, BOT_PASSWORD)
+if messenger = Jabber::Simple.new({:login => BOT_LOGIN, :password => BOT_PASSWORD, :server =>BOT_JABBER_HOST_SERVER})
   puts "Connected"
 else
   puts "Ooops - Can't connect"
