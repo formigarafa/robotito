@@ -40,10 +40,15 @@ while true
         messenger.deliver(msg.from, "Logged out...")
       else
         if @sh[from_name]
-          stdout, stderr = @sh[from_name].execute(msg.body) if msg.body
-          messenger.deliver(msg.from, "\n" + stdout.chomp) unless stdout.empty?
-          messenger.deliver(msg.from, "\n" + stderr.chomp) unless stderr.empty?
-          messenger.deliver(msg.from, @sh[from_name].execute('pwd')[0].chomp + "$>")
+          begin
+            stdout, stderr = @sh[from_name].execute(msg.body) if msg.body
+            messenger.deliver(msg.from, "\n" + stdout.chomp) unless stdout.empty?
+            messenger.deliver(msg.from, "\n" + stderr.chomp) unless stderr.empty?
+            messenger.deliver(msg.from, @sh[from_name].execute('pwd')[0].chomp + "$>")
+          rescue
+            messenger.deliver(msg.from, "Error: Shell aborted.\nCommand received:"+msg.body)
+            @sh[from_name].close && @sh[from_name] = nil
+          end
         else
           messenger.deliver(msg.from, 'Not Authenticated!')
         end
