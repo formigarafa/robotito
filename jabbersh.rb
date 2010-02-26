@@ -21,24 +21,37 @@ if messenger = Jabber::Simple.new({:login => BOT_LOGIN, :password => BOT_PASSWOR
 else
   puts "Ooops - Can't connect"
 end
-#exit
+
 @sh = {}
 
-while true
+poweron = true
+
+while poweron
   messenger.received_messages do |msg|  
     puts "Received #{msg.body} from #{msg.from}"
     from_name = msg.from.to_s.slice(0,msg.from.to_s.index('/')).sub('/', '')
     if msg && allowed_users.include?(from_name)
       if msg.body == CLIENT_PASSPHRASE
-        if @sh[from_name] == nil
+        if @sh[from_name].nil?
           @sh[from_name] = Session::new 
           messenger.deliver(msg.from, "Now logged in!")
         else
           messenger.deliver(msg.from, "Already logged in...")
         end
+      elsif msg.body == 'jabberhelp'
+        messenger.deliver(msg.from, 'jabberhelp: this message
+        jabberw: users connected to a shell
+        jabberpoweroff: power this robot off
+        logmein: connect to shell
+        exit: close the shell connection')
+      elsif msg.body == 'jabberw'
+        messenger.deliver(msg.from, @sh.keys.join(', '))
       elsif msg.body == 'exit' and @sh[from_name] != nil
         @sh[from_name].close && @sh[from_name] = nil
         messenger.deliver(msg.from, "Logged out...")
+      elsif msg.body == 'jabberpoweroff' and @sh[from_name].nil?
+        messenger.deliver(msg.from, "Power-off the bot!")
+        poweron = false
       else
         if @sh[from_name]
           begin
