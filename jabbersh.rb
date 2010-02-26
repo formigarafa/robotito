@@ -12,6 +12,7 @@
 require 'config'
 require 'rubygems'
 require 'xmpp4r-simple'
+require 'gems_patch.rb'
 require 'session'
 
 puts "Connecting"
