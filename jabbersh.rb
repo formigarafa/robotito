@@ -21,7 +21,7 @@ else
   puts "Ooops - Can't connect"
 end
 #exit
-@sh = nil
+@sh = {}
 
 while true
   messenger.received_messages do |msg|  
@@ -29,21 +29,21 @@ while true
     from_name = msg.from.to_s.slice(0,msg.from.to_s.index('/')).sub('/', '')
     if msg && allowed_users.include?(from_name)
       if msg.body == CLIENT_PASSPHRASE
-        if @sh == nil
-          @sh = Session::new 
+        if @sh[from_name] == nil
+          @sh[from_name] = Session::new 
           messenger.deliver(msg.from, "Now logged in!")
         else
           messenger.deliver(msg.from, "Already logged in...")
         end
-      elsif msg.body == 'exit' and @sh != nil
-        @sh.close && @sh = nil
+      elsif msg.body == 'exit' and @sh[from_name] != nil
+        @sh[from_name].close && @sh[from_name] = nil
         messenger.deliver(msg.from, "Logged out...")
       else
-        if @sh
-          stdout, stderr = @sh.execute(msg.body) if msg.body
+        if @sh[from_name]
+          stdout, stderr = @sh[from_name].execute(msg.body) if msg.body
           messenger.deliver(msg.from, "\n" + stdout.chomp) unless stdout.empty?
           messenger.deliver(msg.from, "\n" + stderr.chomp) unless stderr.empty?
-          messenger.deliver(msg.from, @sh.execute('pwd')[0].chomp + "$>")
+          messenger.deliver(msg.from, @sh[from_name].execute('pwd')[0].chomp + "$>")
         else
           messenger.deliver(msg.from, 'Not Authenticated!')
         end
