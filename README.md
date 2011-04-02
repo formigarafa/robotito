@@ -17,3 +17,8 @@ This is a light-weight bot connecting through XMPP (eg.: GTalk) that allow you r
 Jabber-Shell will not open an port to be accessed, instead of that, it will connect to a jabber service.
 You will send your commands in a chat session and receive terminal output back.
 You will keep "talking" to your server like you always had, but this time it will respond to you.
+
+## Thanks
+ [Philippe Creux](http://github.com/pcreux) and its [suggestion on gist](https://gist.github.com/pcreux)
+ 
+ https://gist.github.com/258561
