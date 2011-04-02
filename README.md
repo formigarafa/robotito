@@ -19,6 +19,6 @@ You will send your commands in a chat session and receive terminal output back.
 You will keep "talking" to your server like you always had, but this time it will respond to you.
 
 ## Thanks
- [Philippe Creux](http://github.com/pcreux) and its [suggestion on gist](https://gist.github.com/pcreux)
+ [Philippe Creux](http://github.com/pcreux) and its [suggestion on gist](https://gist.github.com/258561)
  
  https://gist.github.com/258561
