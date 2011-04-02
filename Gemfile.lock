@@ -1,0 +1,18 @@
+GEM
+  remote: http://rubygems.org/
+  specs:
+    daemons (1.1.2)
+    fattr (2.2.0)
+    session (3.1.0)
+      fattr
+    xmpp4r (0.5)
+    xmpp4r-simple (0.8.8)
+      xmpp4r (>= 0.3.2)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  daemons
+  session
+  xmpp4r-simple
