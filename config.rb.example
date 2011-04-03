@@ -5,5 +5,5 @@ BOT_JABBER_HOST_SERVER = 'talk.google.com'
 
 # Jabber-SH answers some random epigram via 'fortune' to any message sent to him.
 # The user CLIENT_LOGIN logs into the console by sending the CLIENT_PASSPHRASE.
-allowed_users      = ['alloweduser@gmail.com']
+AllowsedUsers      = ['alloweduser@gmail.com']
 CLIENT_PASSPHRASE = "logmein"
