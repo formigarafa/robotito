@@ -8,3 +8,4 @@ require 'daemons'
 
 require "#{JabberShellRoot}/gems_patch"
 require "#{JabberShellRoot}/../config"
+require "#{JabberShellRoot}/jabber_shell"
