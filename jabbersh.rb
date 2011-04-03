@@ -11,6 +11,7 @@
 
 require 'config'
 require 'rubygems'
+require 'bundler/setup'
 require 'xmpp4r-simple'
 require 'gems_patch.rb'
 require 'session'
