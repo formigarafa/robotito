@@ -9,14 +9,7 @@
 #
 # Philippe Creux. pcreux/AT/gmail/DOT/com
 
-JabberShellRoot = File.dirname(__FILE__)
-
-require 'rubygems'
-require 'bundler/setup'
-require 'xmpp4r-simple'
-require 'session'
-require "#{JabberShellRoot}/gems_patch"
-require "#{JabberShellRoot}/config"
+require 'lib/boot'
 
 puts "Connecting"
 if messenger = Jabber::Simple.new({:login => BOT_LOGIN, :password => BOT_PASSWORD, :server =>BOT_JABBER_HOST_SERVER})
