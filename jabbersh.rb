@@ -30,7 +30,7 @@ while poweron
   messenger.received_messages do |msg|  
     puts "Received #{msg.body} from #{msg.from}"
     from_name = msg.from.to_s.slice(0,msg.from.to_s.index('/')).sub('/', '')
-    if msg && allowed_users.include?(from_name)
+    if msg && AllowsedUsers.include?(from_name)
       if msg.body == CLIENT_PASSPHRASE
         if @sh[from_name].nil?
           @sh[from_name] = Session::new 
