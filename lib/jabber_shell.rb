@@ -1,15 +1,27 @@
 class JabberShell
+  attr_accessor :messenger
+  
+  def connect
+    puts "Connecting..."
+    begin
+      self.messenger = Jabber::Simple.new({:login => BOT_LOGIN, :password => BOT_PASSWORD, :server =>BOT_JABBER_HOST_SERVER})
+      puts "Connected"
+    rescue Exception => e
+      puts "Ooops - Couldn't connect"
+    end
+  end
+  
+  def connected?
+    messenger ? true : false
+  end
 
   def run
-    puts "Connecting"
-    if messenger = Jabber::Simple.new({:login => BOT_LOGIN, :password => BOT_PASSWORD, :server =>BOT_JABBER_HOST_SERVER})
-      puts "Connected"
-    else
-      puts "Ooops - Can't connect"
-    end
-
+    connect
+    processing_loop if connected?
+  end
+  
+  def processing_loop
     @sh = {}
-
     poweron = true
 
     while poweron
