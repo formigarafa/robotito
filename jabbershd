@@ -2,5 +2,7 @@
 
 require 'lib/boot'
 
-Daemons.run('./jabbersh.rb')
+Daemons.run_proc File.basename(__FILE__) do
+  JabberShell.new.run
+end
 
