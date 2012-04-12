@@ -10,7 +10,7 @@ Sometimes you can not reach an ssh ip:port of an host by a lot of reasons:
 * port redirections
 * annoying administrators
   
-To avoid these problems there is the Jabber-Shell.
+To avoid these problems there is the Robo-TiTO.
  
 ## Description
 This is a light-weight bot connecting through XMPP (eg.: GTalk) that allow you runnning shell command remotely.
