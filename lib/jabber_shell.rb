@@ -46,7 +46,7 @@ class JabberShell
   
   def process_message(message)
     puts "Received #{message.body} from #{message.from}"
-    master_name = message.from.to_s.slice(0,message.from.to_s.index('/')).sub('/', '')
+    master_name = message.from.to_s.split('/').first
     if message && AllowsedUsers.include?(master_name)
       process_command(message.body, master_name, message)
     else
