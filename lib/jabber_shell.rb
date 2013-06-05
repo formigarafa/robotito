@@ -4,7 +4,7 @@ class JabberShell
   def connect
     puts "Connecting..."
     begin
-      self.messenger = Jabber::Simple.new({:login => BOT_LOGIN, :password => BOT_PASSWORD, :server =>BOT_JABBER_HOST_SERVER})
+      self.messenger = Jabber::Simple.new({:login => BOT_LOGIN, :password => BOT_PASSWORD, :server =>BOT_JABBER_HOST_SERVER, :port => BOT_JABBER_SERVER_PORT})
       puts "Connected"
     rescue Exception => e
       puts "Ooops - Couldn't connect"
@@ -46,7 +46,7 @@ class JabberShell
   
   def process_message(message)
     puts "Received #{message.body} from #{message.from}"
-    master_name = message.from.to_s.slice(0,message.from.to_s.index('/')).sub('/', '')
+    master_name = message.from.to_s.split('/').first
     if message && AllowsedUsers.include?(master_name)
       process_command(message.body, master_name, message)
     else
