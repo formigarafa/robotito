@@ -23,6 +23,23 @@ You will keep "talking" to your server like you always had, but this time it wil
 * [bundler](http://rubygems.org/gems/bundler)
 * Ruby 1.8.7 _(depends on gems not working with 1.9.2)_
 
+### Installation
+
+```
+bundle install
+
+# adjust the bot credentials and server settings using the example file provided
+cp config/credentials.rb.example credentials.rb
+vim config/credentials.rb
+
+# start with
+./jabbershd start
+
+# check additional available options with
+./jabbershd -h
+
+```
+
 ## Thanks
  [Philippe Creux](http://github.com/pcreux) and its [suggestion on gist](https://gist.github.com/258561)
  
