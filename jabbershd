@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
 
-require 'lib/boot'
+require "#{File.dirname(__FILE__)}/lib/boot"
 
 Daemons.run_proc File.basename(__FILE__) do
   JabberShell.new.run
