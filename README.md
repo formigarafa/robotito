@@ -1,9 +1,6 @@
 # Robo-TiTO
  Robo-TiTO is an alternative connection to a remote machine terminal.
  
-## Get involved
-Drop a :+1: or a comment on Robo-TiTO's [Research](/formigarafa/robotito/issues/2)
- 
 ## Main Objective
 Sometimes you cannot reach an ssh ip:port of an host by a lot of reasons:
 
@@ -14,6 +11,9 @@ Sometimes you cannot reach an ssh ip:port of an host by a lot of reasons:
 * annoying administrators
   
 Robo-TiTO allows you circumvent these problems and execute commands remotelly on your server.
+ 
+## Get involved
+Drop a :+1: or a comment on Robo-TiTO's [Research](/formigarafa/robotito/issues/2)
  
 ## Description
 This is a light-weight bot connecting through XMPP (eg.: GTalk) that allows you run shell command remotely.
