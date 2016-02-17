@@ -1,6 +1,9 @@
 # Robo-TiTO
  Robo-TiTO is an alternative connection to a remote machine terminal.
  
+## Get involved
+Drop a :+1: or a comment on Robo-TiTO's [Research](/formigarafa/robotito/issues/2)
+ 
 ## Main Objective
 Sometimes you cannot reach an ssh ip:port of an host by a lot of reasons:
 
