@@ -1,6 +1,6 @@
 class JabberShell
   attr_accessor :messenger
-  
+
   def connect
     puts "Connecting..."
     begin
@@ -10,7 +10,7 @@ class JabberShell
       puts "Ooops - Couldn't connect"
     end
   end
-  
+
   def connected?
     messenger ? true : false
   end
@@ -19,7 +19,7 @@ class JabberShell
     connect
     processing_loop if connected?
   end
-  
+
   def processing_loop
     @sh = {}
     power_on
@@ -31,33 +31,33 @@ class JabberShell
       sleep 1
     end
   end
-  
+
   def powered_on?
     @powered_on
   end
-  
+
   def power_on
     @powered_on = true
   end
-  
+
   def power_off
     @powered_on = false
   end
-  
+
   def process_message(message)
     puts "Received #{message.body} from #{message.from}"
     master_name = message.from.to_s.split('/').first
-    if message && AllowsedUsers.include?(master_name)
+    if message && ALLOWED_USERS.include?(master_name)
       process_command(message.body, master_name, message)
     else
       messenger.deliver(message.from, "I don't talk to strangers!\nUser not allowed: "+master_name)
     end
   end
-  
+
   def process_command(command, master_name, message)
     if command == CLIENT_PASSPHRASE
       if @sh[master_name].nil?
-        @sh[master_name] = Session::new 
+        @sh[master_name] = Session::new
         messenger.deliver(message.from, "Now logged in!")
       else
         messenger.deliver(message.from, "Already logged in...")
