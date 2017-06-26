@@ -3,16 +3,14 @@ class JabberShell
 
   def connect
     puts "Connecting..."
-    begin
-      self.messenger = Jabber::Simple.new({:login => BOT_LOGIN, :password => BOT_PASSWORD, :server =>BOT_JABBER_HOST_SERVER, :port => BOT_JABBER_SERVER_PORT})
-      puts "Connected"
-    rescue Exception => e
-      puts "Ooops - Couldn't connect"
-    end
+    self.messenger = Jabber::Simple.new({:login => BOT_LOGIN, :password => BOT_PASSWORD, :server =>BOT_JABBER_HOST_SERVER, :port => BOT_JABBER_SERVER_PORT})
+    puts "Connected"
+  rescue
+    puts "Ooops - Couldn't connect"
   end
 
   def connected?
-    messenger ? true : false
+    !! messenger
   end
 
   def run
