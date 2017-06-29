@@ -1,3 +1,5 @@
+require_relative './message_router'
+
 module Robotito
 
   def self.jabber_client
@@ -9,9 +11,15 @@ module Robotito
     )
   end
 
+  def self.router
+    @router ||= MessageRouter.new
+  end
+
   def self.run
     jabber_client.received_messages.each do |message|
-      puts "Received #{message.body} from #{message.from}"
+      router.dispatch(message) do |response|
+        jabber_client.deliver(message.from, response)
+      end
     end
   end
 
