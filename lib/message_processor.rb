@@ -32,10 +32,12 @@ module Robotito
     end
 
     def process(message)
+      if respond_to?(message.body.strip)
+        send message.body.strip
+      end
       if block_given?
         yield <<~MESSAGE
-          Processor [#{self.object_id}] for #{jid.to_s}, process:\n#{message.body}
-          Received #{message.body} from #{message.from}
+          Processor [#{self.object_id}]: state {#{self.state_name.inspect}}
         MESSAGE
       end
     end
