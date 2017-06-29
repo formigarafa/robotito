@@ -11,7 +11,7 @@ module Robotito
     end
 
     def deliver(recipient_jid, message)
-      puts "[#{recipient_jid}] #{message}"
+      cli.deliver(recipient_jid, message)
     end
 
     def received_messages
