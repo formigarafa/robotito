@@ -1,0 +1,10 @@
+#!/usr/bin/env ruby
+
+require File.expand_path("../lib/boot", __FILE__)
+require File.expand_path("../lib/robotito", __FILE__)
+require File.expand_path("../lib/jabber_client", __FILE__)
+
+Daemons.run_proc(File.basename(__FILE__), {:dir => File.dirname(__FILE__)}) do
+  Signal.trap('INT') { Robotito.stop }
+  Robotito.run
+end
