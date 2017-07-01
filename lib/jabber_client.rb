@@ -26,12 +26,11 @@ module Robotito
         loop do
           cli.received_messages do |message|
             break if ! enabled
-            puts ""
             yielder << message
           end
           break if ! enabled
-          sleep 0.1
-          putc '.'
+          sleep 0.3
+          # putc '.'
         end
       end
     end
