@@ -1,6 +1,7 @@
 require 'session'
 require 'shellwords'
 require 'state_machines'
+require_relative './otp_authenticator'
 
 module Robotito
   class MessageProcessor
@@ -24,14 +25,6 @@ module Robotito
         transition :authentication => :shell
       end
 
-      event :work do
-        transition :shell => :busy
-      end
-
-      event :rest do
-        transition :busy => :shell
-      end
-
       event :logout do
         transition :shell => :identification
       end
@@ -50,15 +43,19 @@ module Robotito
 
     private
 
-    def sanitize_message(message)
-      # first_line = message.lines.map(&:strip).reject(&:empty?).first
-      # command = (first_line[2..-1].split(" ").first || 'noop').to_sym
-      # internal = first_line[0..1] == '#!'
-      # {
-      #   internal: internal,
-      #   command: command,
-      #   valid: !internal || state_events.include?(command),
-      # }
+    def authentication_command(message)
+      password = first_word(message)
+      if OtpAuthenticator.valid? user_id, password
+        authenticate
+        "Authentication successfull."
+      else
+        unidentify
+        "Authentication failed."
+      end
+    end
+
+    def bash
+      @bash ||= Session::Bash::Login.new
     end
 
     def first_word(message)
@@ -75,21 +72,6 @@ module Robotito
       else
         "Unknown User: #{id}"
       end
-    end
-
-    def authentication_command(message)
-      password = first_word(message)
-      if password == PASSWD[user_id]
-        authenticate
-        "Authentication successfull."
-      else
-        unidentify
-        "Authentication failed."
-      end
-    end
-
-    def bash
-      @bash ||= Session::new
     end
 
     def shell_command(message)
@@ -114,10 +96,6 @@ module Robotito
       parts.instance_of?(Array) && ! parts.size.zero?
     rescue ArgumentError
       return false
-    end
-
-    def busy_command(message)
-      "busy #{message}"
     end
 
   end
