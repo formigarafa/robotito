@@ -5,7 +5,7 @@ require_relative './otp_authenticator'
 
 module Robotito
   class MessageProcessor
-    attr_accessor :jid, :user_id
+    attr_accessor :jid, :user_id, :apoptosis_mode
 
     def initialize(jid)
       self.jid = jid
@@ -35,6 +35,7 @@ module Robotito
         logout
         @bash && bash.close
         @bash = nil
+        self.apoptosis_mode = true
         "Logged out"
       else
         send("#{state_name}_command", message.body)
