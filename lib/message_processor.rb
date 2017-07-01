@@ -44,11 +44,12 @@ module Robotito
       end
 
       if block_given?
-        yield <<~MESSAGE
-          Processor [#{self.object_id}]: state {#{self.state_name.inspect}}
-          ====================
-          #{str}
-        MESSAGE
+        # dbg_message = <<~MESSAGE
+        #   Processor [#{self.object_id}]: state {#{self.state_name.inspect}}
+        #   ====================
+        #   #{str}
+        # MESSAGE
+        yield str
       end
     end
 
