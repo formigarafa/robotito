@@ -1,0 +1,4 @@
+#!/usr/bin/env ruby
+
+puts "DEPRECATION WARNING: `jabbershd` executable is deprecated use `robotitod` instead."
+load File.expand_path('../robotitod', __FILE__)
