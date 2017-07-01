@@ -1,5 +1,5 @@
 require 'xmpp4r-simple'
-require_relative './gems_patch'
+require_relative './xmpp4r-simple_patch'
 
 module Robotito
   class JabberClient
