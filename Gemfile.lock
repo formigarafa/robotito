@@ -1,18 +1,39 @@
+GIT
+  remote: https://github.com/blaine/xmpp4r-simple.git
+  revision: 92e2cd0002ec3a9a38506527e1a3a2d622408626
+  specs:
+    xmpp4r-simple (0.8.8)
+      xmpp4r (>= 0.3.2)
+
 GEM
   remote: http://rubygems.org/
   specs:
-    daemons (1.1.2)
-    fattr (2.2.0)
-    session (3.1.0)
-      fattr
-    xmpp4r (0.5)
-    xmpp4r-simple (0.8.8)
-      xmpp4r (>= 0.3.2)
+    coderay (1.1.1)
+    daemons (1.2.4)
+    method_source (0.8.2)
+    pry (0.10.4)
+      coderay (~> 1.1.0)
+      method_source (~> 0.8.1)
+      slop (~> 3.4)
+    pry-remote (0.1.8)
+      pry (~> 0.9)
+      slop (~> 3.0)
+    rotp (3.3.0)
+    session (3.2.0)
+    slop (3.6.0)
+    state_machines (0.5.0)
+    xmpp4r (0.5.6)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
   daemons
+  pry-remote
+  rotp
   session
-  xmpp4r-simple
+  state_machines
+  xmpp4r-simple!
+
+BUNDLED WITH
+   1.15.1
