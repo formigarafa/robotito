@@ -67,8 +67,9 @@ module Robotito
 
     def identification_command(message)
       id = first_word(message)
-      if ALLOWED_USERS.include? id
-        self.user_id = id
+      id_found, _ = PASSWD.find{|k, v| k.to_s == id}
+      if id_found
+        self.user_id = id_found
         identify
         "Welcome, #{user_id}. Please send authentication."
       else
@@ -78,7 +79,7 @@ module Robotito
 
     def authentication_command(message)
       password = first_word(message)
-      if password == CLIENT_PASSPHRASE
+      if password == PASSWD[user_id]
         authenticate
         "Authentication successfull."
       else
