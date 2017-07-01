@@ -1,5 +1,5 @@
 GIT
-  remote: git://github.com/blaine/xmpp4r-simple.git
+  remote: https://github.com/blaine/xmpp4r-simple.git
   revision: 92e2cd0002ec3a9a38506527e1a3a2d622408626
   specs:
     xmpp4r-simple (0.8.8)

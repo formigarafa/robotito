@@ -1,4 +1,5 @@
 require 'state_machines'
+require 'shellwords'
 
 module Robotito
   class MessageProcessor
@@ -98,10 +99,20 @@ module Robotito
         return "Logged out"
       end
 
-      responses = bash.execute(message)
-      responses << bash.execute('pwd')[0].chomp + "$>"
-      responses.reject(&:empty?).join("\n")
+      if shell_command_valid?(message)
+        responses = bash.execute(message)
+        responses << bash.execute('pwd')[0].chomp + "$>"
+        responses.reject(&:empty?).join("\n")
+      else
+        "Invalid command: (#{message})"
+      end
     end
+
+    def shell_command_valid?(cmd)
+      parts = Shellwords.shellsplit(cmd)
+      parts.instance_of?(Array) && ! parts.size.zero?
+    rescue ArgumentError
+      return false
     end
 
     def busy_command(message)
