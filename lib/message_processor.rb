@@ -65,9 +65,25 @@ module Robotito
     end
 
     def identification_command(message)
+      id = first_word(message)
+      if ALLOWED_USERS.include? id
+        self.user_id = id
+        identify
+        "Welcome, #{user_id}. Please send authentication."
+      else
+        "Unknown User: #{id}"
+      end
     end
 
     def authentication_command(message)
+      password = first_word(message)
+      if password == CLIENT_PASSPHRASE
+        authenticate
+        "Authentication successfull."
+      else
+        unidentify
+        "Authentication failed."
+      end
     end
 
     def shell_command(message)
