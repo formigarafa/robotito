@@ -86,8 +86,22 @@ module Robotito
       end
     end
 
+    def bash
+      @bash ||= Session::new
+    end
+
     def shell_command(message)
-      "shell #{message}"
+      if first_word(message) == "exit"
+        logout
+        bash.close
+        @bash = nil
+        return "Logged out"
+      end
+
+      responses = bash.execute(message)
+      responses << bash.execute('pwd')[0].chomp + "$>"
+      responses.reject(&:empty?).join("\n")
+    end
     end
 
     def busy_command(message)
