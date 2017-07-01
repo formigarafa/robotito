@@ -47,7 +47,10 @@ module Robotito
       password = first_word(message)
       if OtpAuthenticator.valid? user_id, password
         authenticate
-        "Authentication successfull."
+        [
+          "Authentication successfull.",
+          bash.execute('pwd')[0].chomp + "$>",
+        ].join("\n")
       else
         unidentify
         "Authentication failed."
