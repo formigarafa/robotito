@@ -1,3 +1,4 @@
+require_relative './jabber_client'
 require_relative './message_router'
 
 module Robotito

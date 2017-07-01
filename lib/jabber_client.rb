@@ -1,3 +1,6 @@
+require 'xmpp4r-simple'
+require_relative './gems_patch'
+
 module Robotito
   class JabberClient
     attr_accessor :config, :enabled

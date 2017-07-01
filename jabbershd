@@ -1,8 +1,0 @@
-#!/usr/bin/env ruby
-
-require "#{File.dirname(__FILE__)}/lib/boot"
-
-Daemons.run_proc(File.basename(__FILE__), {:dir => File.dirname(__FILE__)}) do
-  JabberShell.new.run
-end
-

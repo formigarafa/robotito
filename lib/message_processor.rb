@@ -1,5 +1,6 @@
-require 'state_machines'
+require 'session'
 require 'shellwords'
+require 'state_machines'
 
 module Robotito
   class MessageProcessor
@@ -37,7 +38,6 @@ module Robotito
     end
 
     def process(message)
-      # command_data = parse_command(message.body)
       str = send("#{state_name}_command", message.body)
       if block_given?
         yield <<~MESSAGE
