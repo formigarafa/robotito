@@ -1,5 +1,5 @@
 # Robo-TiTO
- Robo-TiTO is an alternative connection to a remote machine terminal.
+ Robo-TiTO gives you an alternative access to a remote machine terminal.
 
 ## Main Objective
 Sometimes you cannot reach an ssh ip:port of an host by a lot of reasons:
@@ -10,7 +10,7 @@ Sometimes you cannot reach an ssh ip:port of an host by a lot of reasons:
 * port redirections
 * annoying administrators
 
-Robo-TiTO allows you circumvent these problems and execute commands remotelly on your server.
+Robo-TiTO allows you circumvent these problems and execute commands remotely on your server.
 
 ## Get involved
 Drop a :+1: or a comment on Robo-TiTO's [Research](https://github.com/formigarafa/robotito/issues/4)
@@ -23,8 +23,7 @@ You will be "talking" to your server like you always did, but now you will get s
 
 ### Requirements
 
-* Ruby <= 1.8.7 (TODO: review support after update, so far working with 2.4.1 and stuck on init with 1.8.7)
-* [bundler](http://rubygems.org/gems/bundler)
+* Ruby >= 2.0.0
 
 ### Installation
 
@@ -36,14 +35,20 @@ cp config/credentials.rb.example credentials.rb
 vim config/credentials.rb
 
 # start with
-./jabbershd start
+./robotitod start
 
 # check additional available options with
-./jabbershd -h
+./robotitod -h
 
 ```
 
-## Thanks
- [Philippe Creux](http://github.com/pcreux) and its [suggestion on gist](https://gist.github.com/258561)
+### Authentication
+Robo-TiTO uses OTP (One Time Password) for authentication. You can use
+[Google Authenticator](https://github.com/google/google-authenticator), available for [Android](https://play.google.com/store/apps/details?id=com.google.android.apps.authenticator2) and [iPhone](https://itunes.apple.com/en/app/google-authenticator/id388497605),
+You just need to add a time based account entry with the credentials you specified
+in the credentials.rb file.
 
- https://gist.github.com/258561
+## Thanks
+[Philippe Creux](http://github.com/pcreux) and its [suggestion on gist](https://gist.github.com/258561)
+
+https://gist.github.com/258561
