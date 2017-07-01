@@ -37,6 +37,8 @@ module Robotito
         @bash = nil
         self.apoptosis_mode = true
         "Logged out"
+      elsif first_word(message.body) == '#!w'
+        Robotito.router.w
       else
         send("#{state_name}_command", message.body)
       end

@@ -19,5 +19,11 @@ module Robotito
       message_processors[jid.to_s] ||= MessageProcessor.new(jid)
     end
 
+    def w
+      message_processors.values.map do |mp|
+        [mp.jid.to_s, mp.state, mp.user_id, ! mp.apoptosis_mode].inspect
+      end.join("\n")
+    end
+
   end
 end
