@@ -26,12 +26,20 @@ module Robotito
       end
 
       event :logout do
-        transition :shell => :identification
+        transition any => :identification
       end
     end
 
     def process(message)
-      str = send("#{state_name}_command", message.body)
+      str = if first_word(message.body) == "exit"
+        logout
+        @bash && bash.close
+        @bash = nil
+        "Logged out"
+      else
+        send("#{state_name}_command", message.body)
+      end
+
       if block_given?
         yield <<~MESSAGE
           Processor [#{self.object_id}]: state {#{self.state_name.inspect}}
@@ -78,13 +86,6 @@ module Robotito
     end
 
     def shell_command(message)
-      if first_word(message) == "exit"
-        logout
-        bash.close
-        @bash = nil
-        return "Logged out"
-      end
-
       if shell_command_valid?(message)
         responses = bash.execute(message)
         responses << bash.execute('pwd')[0].chomp + "$>"
