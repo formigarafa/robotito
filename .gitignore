@@ -1,3 +1,2 @@
 # ignore config file because it can contain sensible data
-.rvmrc
 credentials.rb
