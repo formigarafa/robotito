@@ -33,11 +33,15 @@ bundle install
 # adjust the bot credentials and server settings using the example file provided
 cp config/credentials.rb.example credentials.rb
 vim config/credentials.rb
+```
 
-# start with
+### start with
+```
 ./robotitod start
+```
 
-# check additional available options with
+### check additional available options with
+```
 ./robotitod -h
 
 ```
