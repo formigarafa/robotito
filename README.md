@@ -31,7 +31,7 @@ You will be "talking" to your server like you always did, but now you will get s
 bundle install
 
 # adjust the bot credentials and server settings using the example file provided
-cp config/credentials.rb.example credentials.rb
+cp config/credentials.rb.example config/credentials.rb
 vim config/credentials.rb
 ```
 
